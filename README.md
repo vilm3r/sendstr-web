@@ -23,6 +23,7 @@ Then copy the contents of `./out` to your favorite static content host.
 - [ ] Themes and Light/Dark support
 - [ ] React native client
 - [ ] Support non-throwaway credentials
+- [ ] Switch to ephemeral events with direct message as a fallback
 
 ## License
 
