@@ -17,12 +17,12 @@ Then copy the contents of `./out` to your favorite static content host.
 
 ## Future Features
 
-- [] Two-way collaboration
-- [] File sharing
-- [] FAQ Page
-- [] Themes and Light/Dark support
-- [] React native client
-- [] Support non-throwaway credentials
+- [ ] Two-way collaboration
+- [ ] File sharing
+- [ ] FAQ Page
+- [ ] Themes and Light/Dark support
+- [ ] React native client
+- [ ] Support non-throwaway credentials
 
 ## License
 
