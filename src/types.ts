@@ -1,4 +1,4 @@
-export type NostrSub = ({
+export type NostrSubType = ({
   cb,
   filter,
 }: {
@@ -11,13 +11,13 @@ export type NostrSub = ({
     message: string
     sig: string
     tags: [[string, string]]
-  }) => Promise<void>
+  }) => void
   filter: Record<string, string[]>[]
 }) => {
   unsub: () => void
 }
 
-export type NostrPublish = ({
+export type NostrPublishType = ({
   pubkey,
   created_at,
   kind,
@@ -31,17 +31,17 @@ export type NostrPublish = ({
   content: string
 }) => Promise<void>
 
-export type NostrPool = {
+export type NostrPoolType = {
   setPrivateKey: (priv: string) => void
   addRelay: (url: string, { read, write }: { read: boolean; write: boolean }) => void
-  sub: NostrSub
-  publish: NostrPublish
+  sub: NostrSubType
+  publish: NostrPublishType
 }
 
 export type NostrType = {
   priv: string
   pub: string
-  pool: NostrPool | null
+  pool: NostrPoolType | null
   sub: {
     unsub: () => void
   } | null
@@ -56,4 +56,9 @@ export type NostrEventType = {
   message: string
   sig: string
   tags: [[string, string]]
+}
+
+export type NostrKeysType = {
+  pub: string
+  priv: string
 }

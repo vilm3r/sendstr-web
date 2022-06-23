@@ -29,7 +29,7 @@ declare module "nostr-tools" {
         message: string
         sig: string
         tags: [[string, string]]
-      }) => Promise<void>
+      }) => void
       filter: Record<string, string[]>[]
     }) => {
       unsub: () => void

@@ -7,7 +7,8 @@ import { MdQrCodeScanner } from "react-icons/md"
 import { IconButton } from "../../components/icon-button"
 import { Card } from "../../components/card"
 import { debounce } from "../../lib/utils"
-import { NostrType } from "../../types"
+import { NostrEventType, NostrKeysType, NostrType } from "../../types"
+import { subscribe, sendEncryptedMessage, getLatestEvent } from "../../lib/nostr"
 
 type MessageProps = {
   message: string
@@ -55,43 +56,48 @@ const PeerInput = ({ peerKey, onChange, setShowScan }: PeerInputProps) => {
 }
 
 export type SendViewProps = {
-  nostr: NostrType
+  keys: NostrKeysType
 }
 
-export const SendView = ({ nostr }: SendViewProps) => {
+export const SendView = ({ keys }: SendViewProps) => {
   const [showScan, setShowScan] = useState(false)
   const [peerKey, setPeerKey] = useState("")
   const [message, setMessage] = useState("")
+  const events = useRef<{ [k: string]: NostrEventType } | null>(null)
+  const nostr = useRef<NostrType | null>(null)
 
   const ScanView = dynamic(async () => (await import("../scan")).ScanView)
 
+  const processEvent = (event: NostrEventType) => {
+    events.current = { ...events.current, ...{ [event.id]: event } }
+    setMessage(getLatestEvent(events?.current)?.message || "")
+  }
+
   useEffect(() => {
-    if (isMobile) {
-      setShowScan(true)
-    }
+    void (async () => {
+      if (isMobile) {
+        setShowScan(true)
+      }
+      const sub = await subscribe(keys, peerKey, processEvent)
+      nostr.current = { ...sub, ...keys }
+      return () => {
+        nostr?.current?.sub?.unsub()
+      }
+    })()
   }, [])
 
-  const sendNostrMessage = useRef(
+  const sendMessage = useRef(
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    debounce(async (m: string, p: string, n: NostrType) => {
-      try {
-        const { encrypt } = await import("nostr-tools/nip04")
-        await n.pool?.publish({
-          pubkey: n.pub,
-          created_at: Math.round(Date.now() / 1000),
-          kind: 4,
-          tags: [["p", p]],
-          content: encrypt(n.priv, p, m),
-        })
-      } catch (e) {
-        console.warn(e)
+    debounce(async (peerKey: string, message: string) => {
+      if (nostr.current?.pool) {
+        await sendEncryptedMessage({ ...nostr.current, peerKey, message })
       }
-    }, 750),
+    }, 500),
   ).current
 
-  const sendMessage = (message: string) => {
+  const onMessageChange = (message: string) => {
     setMessage(message)
-    sendNostrMessage(message, peerKey, nostr)
+    sendMessage(peerKey, message)
   }
 
   return (
@@ -109,7 +115,7 @@ export const SendView = ({ nostr }: SendViewProps) => {
         <Card>
           <div className="p-4">
             <PeerInput peerKey={peerKey} setShowScan={setShowScan} onChange={setPeerKey} />
-            {isValidPeerKey(peerKey) && <Message message={message} onChange={sendMessage} />}
+            {isValidPeerKey(peerKey) && <Message message={message} onChange={onMessageChange} />}
           </div>
         </Card>
       </div>

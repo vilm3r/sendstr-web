@@ -6,14 +6,13 @@ import { Button } from "../components/button"
 import { Card } from "../components/card"
 import { SendView } from "../views/send"
 import { ReceiveView } from "../views/receive"
-import { NostrEventType, NostrType } from "../types"
+import { NostrKeysType } from "../types"
 
 type HomeProps = {
-  nostr: NostrType
-  event: NostrEventType
+  keys: NostrKeysType
 }
 
-export default function Home({ nostr, event }: HomeProps) {
+export default function Home({ keys }: HomeProps) {
   const [clientType, setClientType] = useState("")
 
   const LandingView = () => (
@@ -46,9 +45,9 @@ export default function Home({ nostr, event }: HomeProps) {
   const Page = () => {
     switch (true) {
       case clientType === "send":
-        return <SendView nostr={nostr} />
+        return <SendView keys={keys} />
       case clientType === "receive":
-        return <ReceiveView nostr={nostr} event={event} />
+        return <ReceiveView keys={keys} />
       default:
         return <LandingView />
     }

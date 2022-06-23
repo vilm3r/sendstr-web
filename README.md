@@ -17,7 +17,7 @@ Then copy the contents of `./out` to your favorite static content host.
 
 ## Future Features
 
-- [ ] Two-way collaboration
+- [X] Two-way collaboration
 - [ ] File sharing
 - [ ] FAQ Page
 - [ ] Themes and Light/Dark support
