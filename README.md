@@ -1,5 +1,7 @@
 # Sendstr-web
 
+Access the web app: [https://sendstr.com](https://sendstr.com)
+
 Sendstr is an e2e encrypted shared clipboard web app powered by Nostr.
 
 The main motivation to build Sendstr was to provide a quick and easy way to transfer text and files (coming soon) between devices. Sendstr defaults to a self-hosted Nostr relay but can easily be configured to point elsewhere.
