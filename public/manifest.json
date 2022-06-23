@@ -14,9 +14,9 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#3367D6",
+  "background_color": "#4D6A51",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#3367D6",
+  "theme_color": "#3C3744",
   "description": "Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load."
 }

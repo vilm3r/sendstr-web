@@ -66,6 +66,8 @@ export default function Home({ nostr, event }: HomeProps) {
             page load, and the default relay deletes messages after 1 hour."
         />
         <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
       </Head>
       <div className="bg-custom-green-dark min-h-screen">
         <div className="p-5">
