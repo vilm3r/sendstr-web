@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /index.html
+Sitemap: https://sendstr.com/sitemap.xml

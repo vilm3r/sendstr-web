@@ -1,0 +1,58 @@
+{
+  "name": "sendstr-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "rm -rf out/ && next build && next export",
+    "serve": "browser-sync start --server out --no-open --https --no-snippet",
+    "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix",
+    "format": "npx prettier --write \"src/**/*.@(tsx|ts|jsx|js)\""
+  },
+  "dependencies": {
+    "@zxing/browser": "^0.1.1",
+    "date-fns": "^2.11.1",
+    "gray-matter": "^4.0.2",
+    "next": "latest",
+    "next-pwa": "^5.5.4",
+    "nostr-tools": "^0.23.3",
+    "qrcode.react": "^3.0.2",
+    "react": "17.0.2",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.4.0",
+    "remark": "^14.0.1",
+    "remark-html": "^15.0.0",
+    "toastify-js": "^1.11.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.3",
+    "@types/react": "^17.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "autoprefixer": "^10.4.7",
+    "browser-sync": "^2.27.10",
+    "eslint": "^8.18.0",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.3",
+    "typescript": "^4.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vilm3r/sendstr-web.git"
+  },
+  "keywords": [
+    "nostr",
+    "nextjs"
+  ],
+  "author": "vilm3r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vilm3r/sendstr-web/issues"
+  },
+  "homepage": "https://sendstr.com"
+}
