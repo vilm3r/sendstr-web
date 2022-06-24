@@ -115,7 +115,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
               </div>
             </div>
           </div>
-          <div>{<Message message={message} onChange={onMessageChange} />}</div>
+          <div>{peerKey !== '' && <Message message={message} onChange={onMessageChange} />}</div>
         </div>
       </Card>
     </div>
