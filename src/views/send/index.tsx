@@ -45,8 +45,8 @@ const PeerInput = ({ peerKey, onChange, setShowScan }: PeerInputProps) => {
         <Input value={peerKey} onChange={(e) => onChange(e?.currentTarget?.value || "")} />
         <div className="absolute right-0 top-0 h-full flex items-center">
           <IconButton className="w-10 h-10 mr-2" onClick={() => setShowScan(true)}>
-            <div className="">
-              <MdQrCodeScanner width="100%" height="auto" />
+            <div className="m-2">
+              <MdQrCodeScanner size="100%" />
             </div>
           </IconButton>
         </div>
