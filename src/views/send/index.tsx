@@ -87,6 +87,15 @@ export const SendView = ({ keys }: SendViewProps) => {
     })()
   }, [])
 
+  const onMessageChange = (message: string) => {
+    setMessage(message)
+    sendMessage(peerKey, message)
+  }
+
+  useEffect(() => {
+    if (peerKey !== "") onMessageChange("")
+  }, [peerKey])
+
   const sendMessage = useRef(
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     debounce(async (peerKey: string, message: string) => {
@@ -95,11 +104,6 @@ export const SendView = ({ keys }: SendViewProps) => {
       }
     }, 500),
   ).current
-
-  const onMessageChange = (message: string) => {
-    setMessage(message)
-    sendMessage(peerKey, message)
-  }
 
   return (
     <div>
