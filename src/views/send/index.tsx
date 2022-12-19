@@ -22,9 +22,10 @@ const Message = ({ message, onChange }: MessageProps) => {
     <section className="p-4">
       <div className="border-0">
         <textarea
-          className="bg-custom-green-dark border-2 border-custom-black rounded w-full min-h-[100px] max-h-[700px]"
+          className="bg-custom-green-dark border-2 border-custom-black rounded w-full min-h-[100px] max-h-[700px] placeholder-gray-50 p-1"
           value={message}
           onChange={(e) => onChange(e.currentTarget.value || "")}
+          placeholder="Start typing here..."
         />
       </div>
     </section>
