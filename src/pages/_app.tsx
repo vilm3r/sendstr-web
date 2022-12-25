@@ -1,6 +1,7 @@
 import "../styles/global.css"
 import { AppProps } from "next/app"
 import { useEffect, useState } from "react"
+import { ThemeProvider } from "next-themes"
 
 export default function App({ Component, pageProps }: AppProps) {
   const [keys, setKeys] = useState<{
@@ -17,5 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
     })()
   }, [])
 
-  return <Component {...{ ...pageProps, keys }} />
+  return (
+    <ThemeProvider attribute="class">
+      <Component {...{ ...pageProps, keys }} />
+    </ThemeProvider>
+  )
 }
