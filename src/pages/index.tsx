@@ -19,9 +19,9 @@ export default function Home({ keys }: HomeProps) {
     <div className="max-w-[64rem] m-auto">
       <Card>
         <div className="p-10">
-          <h1 className="text-2xl text-bold pb-5">Open source e2e encrypted shared clipboard</h1>
+          <h1 className="text-2xl text-bold pb-5">Open source e2e encrypted bi-directional clipboard</h1>
           <p className="pb-10">
-            Sendstr is an open source end-to-end encrypted shared clipboard app built on top of{" "}
+            Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of{" "}
             <a className="underline" href="https://github.com/nostr-protocol/nostr" target="_blank">
               Nostr
             </a>
@@ -61,7 +61,7 @@ export default function Home({ keys }: HomeProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app
             built on top of Nostr. No login needed, new throwaway encryption keys are generated on
             page load, and the default relay deletes messages after 1 hour."
         />
@@ -70,7 +70,7 @@ export default function Home({ keys }: HomeProps) {
         <meta property="og:title" content="Senstr" />
         <meta
           property="og:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="og:image" content="/favicon-16x16.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -78,7 +78,7 @@ export default function Home({ keys }: HomeProps) {
         <meta property="twitter:title" content="Sendstr" />
         <meta
           property="twitter:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="twitter:image" content="/favicon-16x16.png" />
         <meta name="mobile-web-app-capable" content="yes" />
