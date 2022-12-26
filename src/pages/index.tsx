@@ -67,7 +67,7 @@ export default function Home({ keys }: HomeProps) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sendstr.com/" />
-        <meta property="og:title" content="Senstr" />
+        <meta property="og:title" content="Sendstr" />
         <meta
           property="og:description"
           content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."

@@ -38,7 +38,7 @@ export default function Settings() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sendstr.com/settings" />
-        <meta property="og:title" content="Senstr - Settings" />
+        <meta property="og:title" content="Sendstr - Settings" />
         <meta
           property="og:description"
           content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
