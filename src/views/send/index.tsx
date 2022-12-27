@@ -79,10 +79,10 @@ export const SendView = ({ keys }: SendViewProps) => {
       if (isMobile) {
         setShowScan(true)
       }
-      const sub = await subscribe(keys, peerKey, processEvent)
-      nostr.current = { ...sub, ...keys }
+      const { subs, relays } = await subscribe(keys, peerKey, processEvent)
+      nostr.current = { subs, relays, ...keys }
       return () => {
-        nostr?.current?.sub?.unsub()
+        nostr?.current?.subs.forEach(sub => sub.unsub())
       }
     })()
   }, [])
@@ -99,7 +99,7 @@ export const SendView = ({ keys }: SendViewProps) => {
   const sendMessage = useRef(
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     debounce(async (peerKey: string, message: string) => {
-      if (nostr.current?.pool) {
+      if (nostr.current?.relays) {
         await sendEncryptedMessage({ ...nostr.current, peerKey, message })
       }
     }, 500),

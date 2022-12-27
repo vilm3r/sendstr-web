@@ -1,5 +1,6 @@
 import { getRelays } from "./localStorage"
 import { NostrEventType, NostrKeysType, NostrPoolType } from "../types"
+import { Relay, Sub } from "nostr-tools"
 
 export const getLatestEvent = (events: Record<string, NostrEventType>) =>
   Object.entries(events).reduce((acc, x) => {
@@ -20,30 +21,31 @@ export const subscribe = async (
   peerKey: string,
   cb: (event: NostrEventType) => void,
 ) => {
-  const { decrypt } = await import("nostr-tools/nip04")
-  const { relayPool } = await import("nostr-tools")
-  const pool = relayPool()
-  pool.setPrivateKey(keys.priv)
+  const { nip04, relayInit } = await import("nostr-tools")
   const relays = getRelays()
-  relays.forEach((relay) => relay.enabled && pool.addRelay(relay.url, { read: true, write: true }))
-  const sub = pool.sub({
-    cb: (event: NostrEventType) => {
-      try {
-        const p = event.tags.find(([tag]) => tag === "p") || ["p", ""]
-        const pubkey = event.pubkey === keys.pub ? p[1] : event.pubkey
-        const message = decrypt(keys.priv, pubkey, event.content)
-        cb({ ...event, message })
-      } catch (e) {
-        console.warn(e)
-      }
-    },
-    filter: [{ "#p": [keys.pub, peerKey] }, { authors: [keys.pub, peerKey] }],
-  })
-  return { sub, pool }
+    .filter((x) => x.enabled)
+    .map((x) => relayInit(x.url))
+  await Promise.allSettled(relays.map((x) => x.connect()))
+  relays.forEach((relay) =>
+    relay.on("error", () => console.error(`Failed to connect to relay ${relay.url}`)),
+  )
+  const subs = relays.map((relay) =>
+    relay.sub([{ "#p": [keys.pub, peerKey] }, { authors: [keys.pub, peerKey] }]),
+  )
+  subs.forEach((x) =>
+    x.on("event", async (event: NostrEventType) => {
+      const p = event.tags.find(([tag]) => tag === "p") || ["p", ""]
+      const pubkey = event.pubkey === keys.pub ? p[1] : event.pubkey
+      const message = await nip04.decrypt(keys.priv, pubkey, event.content)
+      cb({ ...event, message })
+    }),
+  )
+  return { subs, relays }
 }
 
 type SendEncryptedMessage = {
-  pool: NostrPoolType | null
+  relays: Relay[]
+  subs: Sub[]
   priv: string
   pub: string
   peerKey: string
@@ -51,18 +53,28 @@ type SendEncryptedMessage = {
 }
 
 export const sendEncryptedMessage = async ({
-  pool,
+  relays,
   priv,
   pub,
   peerKey,
   message,
 }: SendEncryptedMessage) => {
-  const { encrypt } = await import("nostr-tools/nip04")
-  return pool?.publish({
-    pubkey: pub,
-    created_at: Math.round(Date.now() / 1000),
-    kind: 4,
-    tags: [["p", peerKey]],
-    content: encrypt(priv, peerKey, message),
+  const { nip04, getEventHash, signEvent } = await import("nostr-tools")
+  relays.map((relay) => {
+    nip04
+      .encrypt(priv, peerKey, message)
+      .then((content) => {
+        const event = {
+          pubkey: pub,
+          created_at: Math.round(Date.now() / 1000),
+          kind: 4,
+          tags: [["p", peerKey]],
+          content,
+        }
+        const id = getEventHash(event)
+        const sig = signEvent(event, priv)
+        relay.publish({ ...event, id, sig })
+      })
+      .catch((e) => console.error(`Failed to send message to relay ${relay.url}`, e))
   })
 }
