@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes"
 import { QRCodeSVG } from "qrcode.react"
 import { useEffect, useRef, useState } from "react"
 import Toastify from "toastify-js"
@@ -36,6 +37,8 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
   const [message, setMessage] = useState("")
   const events = useRef<{ [k: string]: NostrEventType } | null>(null)
   const nostr = useRef<NostrType | null>(null)
+  const { theme } = useTheme()
+  const isDarkMode = theme === "dark"
 
   const processEvent = (event: NostrEventType) => {
     events.current = { ...events.current, ...{ [event.id]: event } }
@@ -48,7 +51,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
       const { subs, relays } = await subscribe(keys, peerKey, processEvent)
       nostr.current = { subs, relays, ...keys }
       return () => {
-        nostr?.current?.subs.forEach(sub => sub.unsub())
+        nostr?.current?.subs.forEach((sub) => sub.unsub())
       }
     })()
   }, [peerKey])
@@ -78,7 +81,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
                   value={keys.pub}
                   level="H"
                   bgColor="transparent"
-                  fgColor="#3C3744"
+                  fgColor={isDarkMode ? "white" : "black"}
                   includeMargin={false}
                   width="100%"
                   height="100%"
@@ -116,7 +119,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
               </div>
             </div>
           </div>
-          <div>{peerKey !== '' && <Message message={message} onChange={onMessageChange} />}</div>
+          <div>{peerKey !== "" && <Message message={message} onChange={onMessageChange} />}</div>
         </div>
       </Card>
     </div>
