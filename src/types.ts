@@ -1,3 +1,5 @@
+import { Relay, Sub } from "nostr-tools"
+
 export type NostrSubType = ({
   cb,
   filter,
@@ -34,17 +36,15 @@ export type NostrPublishType = ({
 export type NostrPoolType = {
   setPrivateKey: (priv: string) => void
   addRelay: (url: string, { read, write }: { read: boolean; write: boolean }) => void
-  sub: NostrSubType
+  subs: NostrSubType
   publish: NostrPublishType
 }
 
 export type NostrType = {
   priv: string
   pub: string
-  pool: NostrPoolType | null
-  sub: {
-    unsub: () => void
-  } | null
+  subs: Sub[],
+  relays: Relay[]
 }
 
 export type NostrEventType = {

@@ -32,16 +32,16 @@ export default function Settings() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app
             built on top of Nostr. No login needed, new throwaway encryption keys are generated on
             page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sendstr.com/settings" />
-        <meta property="og:title" content="Senstr - Settings" />
+        <meta property="og:title" content="Sendstr - Settings" />
         <meta
           property="og:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="og:image" content="/favicon-16x16.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -49,7 +49,7 @@ export default function Settings() {
         <meta property="twitter:title" content="Sendstr - Settings" />
         <meta
           property="twitter:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="twitter:image" content="/favicon-16x16.png" />
       </Head>

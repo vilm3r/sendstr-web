@@ -3,7 +3,6 @@ import Head from "next/head"
 
 import { Header } from "../components/header"
 import { Button } from "../components/button"
-import { Card } from "../components/card"
 import { SendView } from "../views/send"
 import { ReceiveView } from "../views/receive"
 import { NostrKeysType } from "../types"
@@ -61,16 +60,16 @@ export default function Home({ keys }: HomeProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app
             built on top of Nostr. No login needed, new throwaway encryption keys are generated on
             page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sendstr.com/" />
-        <meta property="og:title" content="Senstr" />
+        <meta property="og:title" content="Sendstr" />
         <meta
           property="og:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="og:image" content="/favicon-16x16.png" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -78,7 +77,7 @@ export default function Home({ keys }: HomeProps) {
         <meta property="twitter:title" content="Sendstr" />
         <meta
           property="twitter:description"
-          content="Sendstr is an open source end-to-end encrypted shared clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
+          content="Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of Nostr. No login needed, new throwaway encryption keys are generated on page load, and the default relay deletes messages after 1 hour."
         />
         <meta property="twitter:image" content="/favicon-16x16.png" />
         <meta name="mobile-web-app-capable" content="yes" />
