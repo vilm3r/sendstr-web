@@ -9,9 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "custom-green-light": "#6b9370",
-        "custom-green-dark": "#4D6A51",
-        "custom-black": "#3C3744",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        warning: "var(--warning)",
       },
     },
   },

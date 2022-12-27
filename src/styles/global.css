@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    color: #FFFFFF
+:root {
+    --orange: #fb8500;
+    --orange-light: #ffb703;
+    --green: #004f2d;
+    --green-light: #7dc95e;
+    --red: #ff4e33;
+    --red-light:#ff8370;
 }
+
+.light {
+    --primary: var(--orange);
+    --secondary: var(--green);
+    --warning: var(--red);
+}
+
+.dark {
+    --primary: var(--orange-light);
+    --secondary: var(--green-light);
+    --warning: var(--red-light);
+}
+
+@layer base {
+    body {
+        @apply dark:bg-black dark:text-gray-100 bg-white text-gray-900
+    }
+}
+
+@layer components {
+    .btn-main {
+      @apply bg-primary rounded-md px-6 py-3 w-full h-full shadow text-gray-100 dark:text-gray-900 font-semibold
+    }
+  }
