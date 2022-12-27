@@ -81,7 +81,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
                   value={keys.pub}
                   level="H"
                   bgColor="transparent"
-                  fgColor={isDarkMode ? "white" : "black"}
+                  fgColor={isDarkMode ? "#f3f4f6" : "black"}
                   includeMargin={false}
                   width="100%"
                   height="100%"
