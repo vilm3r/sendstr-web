@@ -56,7 +56,7 @@ export function Header() {
     <header className="mb-5 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="py-1.5 mr-4 text-lg cursor-pointer">
-          <h1 className="text-xl text-primary font-semibold">Sendstr</h1>
+          <h1 className="text-2xl text-primary font-semibold">Sendstr</h1>
         </a>
         <div className="flex items-center space-x-3">
           {/* <Link
