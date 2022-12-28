@@ -28,7 +28,7 @@ export default function Settings() {
     <>
       <Head>
         <title>Sendstr - Settings</title>
-        <meta name="title" content="Sendstr - Settings"/>
+        <meta name="title" content="Sendstr - Settings" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
@@ -58,59 +58,57 @@ export default function Settings() {
           <div className="max-w-[80rem] mx-auto">
             <Header />
             <main className="max-w-[64rem] m-auto">
-              <Card>
-                <div className="max-w-[30rem] m-auto p-10">
-                  <h2 className="text-2xl pb-5">Relays</h2>
-                  <ul>
-                    {settings.relays.map((relay) => (
-                      <li key={relay.url}>
-                        <div className="m-auto flex items-center pb-3">
-                          <Toggle
-                            checked={relay.enabled}
-                            onChange={() => {
-                              toggleRelay(relay.url)
-                              setSettings({
-                                ...settings,
-                                relays: getRelays(),
-                              })
-                            }}
-                          />
-                          <label className="lg:text-lg flex-grow text-center p-2 truncate">
-                            {relay.url}
-                          </label>
-                          <button
-                            onClick={() => {
-                              removeRelay(relay.url)
-                              setSettings({
-                                ...settings,
-                                relays: getRelays(),
-                              })
-                            }}
-                          >
-                            <MdDelete className="text-2xl" />
-                          </button>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  <Input className="pt-5" ref={newPool} placeholder="Relay url" />
-                  <Button
-                    className="pt-5"
-                    onClick={() => {
-                      addRelay({
-                        url: newPool?.current?.value || "",
-                        enabled: true,
-                      })
-                      setSettings({
-                        ...settings,
-                        relays: getRelays(),
-                      })
-                    }}
-                  >
-                    Add Relay
-                  </Button>
-                </div>
-              </Card>
+              <div className="max-w-[30rem] m-auto p-10">
+                <h2 className="text-2xl pb-5">Relays</h2>
+                <ul>
+                  {settings.relays.map((relay) => (
+                    <li key={relay.url}>
+                      <div className="m-auto flex items-center pb-3">
+                        <Toggle
+                          checked={relay.enabled}
+                          onChange={() => {
+                            toggleRelay(relay.url)
+                            setSettings({
+                              ...settings,
+                              relays: getRelays(),
+                            })
+                          }}
+                        />
+                        <label className="lg:text-lg flex-grow text-center p-2 truncate">
+                          {relay.url}
+                        </label>
+                        <button
+                          onClick={() => {
+                            removeRelay(relay.url)
+                            setSettings({
+                              ...settings,
+                              relays: getRelays(),
+                            })
+                          }}
+                        >
+                          <MdDelete className="text-2xl" />
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <Input className="pt-5" ref={newPool} placeholder="Relay url" />
+                <Button
+                  className="pt-5"
+                  onClick={() => {
+                    addRelay({
+                      url: newPool?.current?.value || "",
+                      enabled: true,
+                    })
+                    setSettings({
+                      ...settings,
+                      relays: getRelays(),
+                    })
+                  }}
+                >
+                  Add Relay
+                </Button>
+              </div>
             </main>
           </div>
         </div>
