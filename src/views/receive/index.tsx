@@ -72,56 +72,53 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
 
   return (
     <div className="max-w-[64rem] m-auto">
-      <Card>
-        <div className="p-10">
-          <div className="flex flex-col lg:flex-row">
-            {peerKey === "" && (
-              <div className="overflow-visible py-5 max-w-[20rem] mx-auto lg:pr-5">
-                <QRCodeSVG
-                  value={keys.pub}
-                  level="H"
-                  bgColor="transparent"
-                  fgColor={isDarkMode ? "#f3f4f6" : "black"}
-                  includeMargin={false}
-                  width="100%"
-                  height="100%"
-                />
+      <div className="p-10">
+        <div className="flex flex-col lg:flex-row">
+          {peerKey === "" && (
+            <div className="overflow-visible py-5 max-w-[20rem] mx-auto lg:pr-5">
+              <QRCodeSVG
+                value={keys.pub}
+                level="H"
+                bgColor="transparent"
+                fgColor={isDarkMode ? "#f3f4f6" : "black"}
+                includeMargin={false}
+                width="100%"
+                height="100%"
+              />
+            </div>
+          )}
+          <div className="flex flex-col items-center justify-center w-full">
+            <div>
+              <label className="flex flex-grow text-left">My pubkey:</label>
+              <div
+                id="mypubkey"
+                className="border-2 border-custom-black rounded-md p-2 bg-custom-green-dark break-all"
+              >
+                {keys.pub}
               </div>
-            )}
-            <div className="flex flex-col items-center justify-center w-full">
-              <div>
-                <label className="flex flex-grow text-left">My pubkey:</label>
-                <div
-                  id="mypubkey"
-                  className="border-2 border-custom-black rounded-md p-2 bg-custom-green-dark break-all"
+              <div className="py-6 max-w-[20rem] m-auto">
+                <Button
+                  onClick={() => {
+                    navigator.clipboard.writeText(keys.pub).catch(console.warn)
+                    Toastify({
+                      text: "Pubkey copied",
+                      duration: 2000,
+                      close: false,
+                      gravity: "bottom",
+                      position: "center",
+                      stopOnFocus: false,
+                      className: "flex fixed bottom-0 bg-custom-black p-2 rounded left-[45%] z-50",
+                    }).showToast()
+                  }}
                 >
-                  {keys.pub}
-                </div>
-                <div className="py-6 max-w-[20rem] m-auto">
-                  <Button
-                    onClick={() => {
-                      navigator.clipboard.writeText(keys.pub).catch(console.warn)
-                      Toastify({
-                        text: "Pubkey copied",
-                        duration: 2000,
-                        close: false,
-                        gravity: "bottom",
-                        position: "center",
-                        stopOnFocus: false,
-                        className:
-                          "flex fixed bottom-0 bg-custom-black p-2 rounded left-[45%] z-50",
-                      }).showToast()
-                    }}
-                  >
-                    Copy Pubkey
-                  </Button>
-                </div>
+                  Copy Pubkey
+                </Button>
               </div>
             </div>
           </div>
-          <div>{peerKey !== "" && <Message message={message} onChange={onMessageChange} />}</div>
         </div>
-      </Card>
+        <div>{peerKey !== "" && <Message message={message} onChange={onMessageChange} />}</div>
+      </div>
     </div>
   )
 }
