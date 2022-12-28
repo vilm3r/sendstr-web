@@ -19,7 +19,7 @@ export function Header() {
 
     if (currentTheme === "dark") {
       return (
-        <button onClick={() => setTheme("light")}>
+        <button onClick={() => setTheme("light")} className="icon-hover">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ export function Header() {
       )
     } else {
       return (
-        <button onClick={() => setTheme("dark")}>
+        <button onClick={() => setTheme("dark")} className="icon-hover">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -65,11 +65,11 @@ export function Header() {
         >FAQ
         </Link> */}
           <a href="https://github.com/vilm3r/sendstr-web">
-            <DiGithubBadge className="inline text-3xl" title="Github" />
+            <DiGithubBadge className="inline text-3xl icon-hover" title="Github" />
           </a>
           <Link href="/settings">
             <div className="cursor-pointer">
-              <MdSettings className="inline text-2xl" title="Settings" />
+              <MdSettings className="inline text-2xl icon-hover" title="Settings" />
             </div>
           </Link>
           {renderThemeToggle()}
