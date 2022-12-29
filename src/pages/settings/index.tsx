@@ -152,7 +152,7 @@ export default function Settings() {
                   </ul>
                   <Input className="pt-5" ref={newPool} placeholder="Relay url" />
                   <Button
-                    className="pt-5"
+                    className="pt-5 shadow-lg"
                     onClick={() => {
                       addRelay({
                         url: newPool?.current?.value || "",

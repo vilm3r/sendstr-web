@@ -98,6 +98,7 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
               </div>
               <div className="py-6 max-w-[20rem] m-auto">
                 <Button
+                  className="shadow-lg"
                   onClick={() => {
                     navigator.clipboard.writeText(keys.pub).catch(console.warn)
                     Toastify({
