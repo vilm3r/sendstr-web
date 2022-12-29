@@ -34,7 +34,7 @@
       @apply bg-primary rounded-md px-6 py-3 w-full h-full shadow text-gray-100 dark:text-gray-900 font-semibold
     }
 
-    .icon-hover {
+    .primary-hover {
         @apply transition duration-300 hover:text-primary
     }
   }
