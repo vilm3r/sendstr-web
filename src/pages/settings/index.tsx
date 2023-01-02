@@ -1,6 +1,5 @@
 import { createRef, useEffect, useState } from "react"
 import { Button } from "../../components/button"
-import { Card } from "../../components/card"
 import { Header } from "../../components/header"
 import {
   SettingsRelay,

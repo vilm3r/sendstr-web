@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { DiGithubBadge } from "react-icons/di"
 import { MdSettings } from "react-icons/md"
 import Link from "next/link"
-import { useTheme } from "next-themes"
 
 export function Header() {
   return (
