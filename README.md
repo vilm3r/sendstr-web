@@ -7,6 +7,7 @@ Sendstr is an e2e encrypted bi-directional clipboard web app powered by Nostr.
 The main motivation to build Sendstr was to provide a quick and easy way to transfer text and files (coming soon) between devices. Sendstr defaults to a self-hosted Nostr relay but can easily be configured to point elsewhere.
 
 ## Build
+
 ```
 cd sendstr-web
 npm i
@@ -20,7 +21,7 @@ Then copy the contents of `./out` to your favorite static content host.
 - [X] Two-way collaboration
 - [ ] File sharing
 - [ ] FAQ Page
-- [ ] Themes and Light/Dark support
+- [X] Light/Dark support
 - [ ] React native client
 - [ ] Browser extension
 - [ ] Support non-throwaway credentials
