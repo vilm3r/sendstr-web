@@ -1,6 +1,5 @@
-import { createRef, useState } from "react"
+import { createRef, useEffect, useState } from "react"
 import { Button } from "../../components/button"
-import { Card } from "../../components/card"
 import { Header } from "../../components/header"
 import {
   SettingsRelay,
@@ -13,6 +12,7 @@ import { Input } from "../../components/input"
 import { MdDelete } from "react-icons/md"
 import { Toggle } from "../../components/toggle"
 import Head from "next/head"
+import { useTheme } from "next-themes"
 
 type SettingsState = {
   relays: SettingsRelay[]
@@ -23,12 +23,50 @@ export default function Settings() {
     relays: typeof window !== "undefined" ? getRelays() : [],
   })
   const newPool = createRef<HTMLInputElement>()
+  const { theme, systemTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const ThemeToggle = () => {
+    if (!mounted) return null
+
+    const currentTheme = theme === "system" ? systemTheme : theme
+    const isDark = currentTheme === "dark"
+
+    const toggleHandler = () => setTheme(isDark ? "light" : "dark")
+
+    return (
+      <div onClick={toggleHandler} className="cursor-pointer">
+        <h2 className="text-2xl pb-5">Theme</h2>
+        <div className="flex justify-between">
+          <p className="lg:text-lg">Dark mode</p>
+          <div className="flex justify-center">
+            <div>
+              <div className="inline-flex relative items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  value=""
+                  className="sr-only peer"
+                  checked={isDark}
+                  readOnly
+                />
+                <div className="w-11 h-6 bg-gray-300 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary focus:outline-none peer-focus-visible:ring-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
       <Head>
         <title>Sendstr - Settings</title>
-        <meta name="title" content="Sendstr - Settings"/>
+        <meta name="title" content="Sendstr - Settings" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
@@ -53,13 +91,13 @@ export default function Settings() {
         />
         <meta property="twitter:image" content="/favicon-16x16.png" />
       </Head>
-      <div className="bg-custom-green-dark min-h-screen">
+      <div className="min-h-screen">
         <div className="p-5">
           <div className="max-w-[80rem] mx-auto">
             <Header />
             <main className="max-w-[64rem] m-auto">
-              <Card>
-                <div className="max-w-[30rem] m-auto p-10">
+              <div className="max-w-[30rem] m-auto p-10">
+                <div className="pb-10">
                   <h2 className="text-2xl pb-5">Relays</h2>
                   <ul>
                     {settings.relays.map((relay) => (
@@ -95,7 +133,7 @@ export default function Settings() {
                   </ul>
                   <Input className="pt-5" ref={newPool} placeholder="Relay url" />
                   <Button
-                    className="pt-5"
+                    className="pt-5 shadow-lg"
                     onClick={() => {
                       addRelay({
                         url: newPool?.current?.value || "",
@@ -110,7 +148,10 @@ export default function Settings() {
                     Add Relay
                   </Button>
                 </div>
-              </Card>
+                <div className="pt-10">
+                  <ThemeToggle />
+                </div>
+              </div>
             </main>
           </div>
         </div>

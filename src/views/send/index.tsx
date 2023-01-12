@@ -5,7 +5,6 @@ import { isMobile } from "react-device-detect"
 import { Input } from "../../components/input"
 import { MdQrCodeScanner } from "react-icons/md"
 import { IconButton } from "../../components/icon-button"
-import { Card } from "../../components/card"
 import { debounce } from "../../lib/utils"
 import { NostrEventType, NostrKeysType, NostrType } from "../../types"
 import { subscribe, sendEncryptedMessage, getLatestEvent } from "../../lib/nostr"
@@ -82,7 +81,7 @@ export const SendView = ({ keys }: SendViewProps) => {
       const { subs, relays } = await subscribe(keys, peerKey, processEvent)
       nostr.current = { subs, relays, ...keys }
       return () => {
-        nostr?.current?.subs.forEach(sub => sub.unsub())
+        nostr?.current?.subs.forEach((sub) => sub.unsub())
       }
     })()
   }, [])
@@ -117,12 +116,10 @@ export const SendView = ({ keys }: SendViewProps) => {
         />
       )}
       <div className="mx-auto max-w-[64rem] flex flex-col gap-5">
-        <Card>
-          <div className="p-4">
-            <PeerInput peerKey={peerKey} setShowScan={setShowScan} onChange={setPeerKey} />
-            {isValidPeerKey(peerKey) && <Message message={message} onChange={onMessageChange} />}
-          </div>
-        </Card>
+        <div className="p-4">
+          <PeerInput peerKey={peerKey} setShowScan={setShowScan} onChange={setPeerKey} />
+          {isValidPeerKey(peerKey) && <Message message={message} onChange={onMessageChange} />}
+        </div>
       </div>
     </div>
   )

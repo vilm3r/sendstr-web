@@ -5,20 +5,15 @@ type ToggleProps = {
 
 export const Toggle = ({ checked, onChange }: ToggleProps) => {
   return (
-    <label>
+    <label className="inline-flex relative items-center cursor-pointer">
       <input
         type="checkbox"
-        className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
+        className="sr-only peer"
         checked={checked}
         onChange={onChange}
+        readOnly
       />
-      <span className="bg-white border-2 border-custom-black rounded-3xl flex h-8 mr-[10px] relative w-16 cursor-pointer">
-        <span
-          className={`flex absolute left-[2px] bottom-[2px] justify-center h-6 w-6 rounded-full items-center transition ${
-            checked ? "bg-custom-black" : "translate-x-8 bg-custom-black/50"
-          }`}
-        ></span>
-      </span>
+      <div className="w-11 h-6 bg-gray-300 focus:outline-none peer-focus-visible:ring-2 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
     </label>
   )
 }

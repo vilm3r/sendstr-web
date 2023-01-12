@@ -3,7 +3,6 @@ import Head from "next/head"
 
 import { Header } from "../components/header"
 import { Button } from "../components/button"
-import { Card } from "../components/card"
 import { SendView } from "../views/send"
 import { ReceiveView } from "../views/receive"
 import { NostrKeysType } from "../types"
@@ -17,28 +16,28 @@ export default function Home({ keys }: HomeProps) {
 
   const LandingView = () => (
     <div className="max-w-[64rem] m-auto">
-      <Card>
-        <div className="p-10">
-          <h1 className="text-2xl text-bold pb-5">Open source e2e encrypted bi-directional clipboard</h1>
-          <p className="pb-10">
-            Sendstr is an open source end-to-end encrypted bi-directional clipboard app built on top of{" "}
-            <a className="underline" href="https://github.com/nostr-protocol/nostr" target="_blank">
-              Nostr
-            </a>
-            . No login needed, new throwaway encryption keys are generated on page load, and the
-            default relay deletes messages after 1 hour. To get started open this page on another
-            device and choose one of the options below.
-          </p>
-          <div className="flex w-full">
-            <Button className="w-1/2 px-4" onClick={() => setClientType("send")}>
-              Send
-            </Button>
-            <Button className="w-1/2 px-4" onClick={() => setClientType("receive")}>
-              Receive
-            </Button>
-          </div>
+      <div className="p-10">
+        <h1 className="font-bold text-5xl md:text-7xl text-bold pb-10">
+          e2e encrypted shared clipboard
+        </h1>
+        <p className="pb-10 leading-relaxed">
+          Sendstr is an open source end-to-end encrypted shared clipboard app built on top of{" "}
+          <a className="underline" href="https://github.com/nostr-protocol/nostr" target="_blank">
+            Nostr
+          </a>
+          . No login needed, new throwaway encryption keys are generated on page load, and the
+          default relay deletes messages after 1 hour. To get started open this page on another
+          device and choose one of the options below.
+        </p>
+        <div className="flex w-full justify-between gap-8">
+          <Button className="w-1/2 shadow-lg" onClick={() => setClientType("send")}>
+            Send
+          </Button>
+          <Button className="w-1/2 shadow-lg" onClick={() => setClientType("receive")}>
+            Receive
+          </Button>
         </div>
-      </Card>
+      </div>
     </div>
   )
 
@@ -57,7 +56,7 @@ export default function Home({ keys }: HomeProps) {
     <>
       <Head>
         <title>Sendstr</title>
-        <meta name="title" content="Sendstr"/>
+        <meta name="title" content="Sendstr" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
@@ -85,12 +84,12 @@ export default function Home({ keys }: HomeProps) {
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
       </Head>
-      <div className="bg-custom-green-dark min-h-screen">
+      <div className="min-h-screen">
         <div className="p-5">
           <div className="max-w-[80rem] mx-auto">
             <Header />
           </div>
-          <main>
+          <main className="max-w-2xl mx-auto px-4">
             <Page />
           </main>
         </div>
