@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" enableSystem={true} defaultTheme={"dark"}>
       <Component {...{ ...pageProps, keys }} />
     </ThemeProvider>
   )
