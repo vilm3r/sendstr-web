@@ -15,7 +15,7 @@ export const Input = forwardRef(
     return (
       <div className={className}>
         <input
-          className="bg-gray-100 dark:bg-gray-800 border-2 border-custom-black rounded w-full p-3"
+          className="border-2 border-custom-black rounded w-full p-3"
           ref={ref}
           value={value}
           onChange={onChange}
