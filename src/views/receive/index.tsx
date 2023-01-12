@@ -75,15 +75,17 @@ export const ReceiveView = ({ keys }: ReceiveViewProps) => {
         <div className="flex flex-col lg:flex-row">
           {peerKey === "" && (
             <div className="overflow-visible py-5 max-w-[20rem] mx-auto lg:pr-5">
-              <QRCodeSVG
-                value={keys.pub}
-                level="H"
-                bgColor="transparent"
-                fgColor={isDarkMode ? "#f3f4f6" : "black"}
-                includeMargin={false}
-                width="100%"
-                height="100%"
-              />
+              <div className="dark:bg-white dark:p-5 dark:rounded-xl">
+                <QRCodeSVG
+                  value={keys.pub}
+                  level="H"
+                  bgColor="white"
+                  fgColor="black"
+                  includeMargin={false}
+                  width="100%"
+                  height="100%"
+                />
+              </div>
             </div>
           )}
           <div className="flex flex-col items-center justify-center w-full">
