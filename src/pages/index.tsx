@@ -17,7 +17,7 @@ export default function Home({ keys }: HomeProps) {
   const LandingView = () => (
     <div className="max-w-[64rem] m-auto">
       <div className="p-10">
-        <h1 className="font-bold text-5xl md:text-7xl text-bold pb-10">
+        <h1 className="font-bold text-4xl md:text-7xl text-bold pb-10">
           e2e encrypted shared clipboard
         </h1>
         <p className="pb-10 leading-relaxed">
